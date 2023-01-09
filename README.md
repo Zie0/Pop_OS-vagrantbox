@@ -226,15 +226,15 @@ In order to better understand [this boot_command](https://github.com/cbednarski/
 
 The idea is to the step where `boot_command` is needed and get hands on experience understanding what [Packer's Boot Configuration "special keys"](https://developer.hashicorp.com/packer/plugins/builders/virtualbox/iso#boot-configuration) actually do, how they behave, and how to use them.
 
-![Screen Shown on Boot](https://gitlab.com/pop_os-dev/pop_os-vagrantbox/uploads/d69484ee47cd6771ccf3089eafe0afae/0_boot.png "Screen Shown on Boot")*Screen Shown on Boot*
+![Screen Shown on Boot](https://gitlab.com/pop_os-dev/pop_os-vagrantbox/uploads/1182e4efe054bfadb210d0fa919d955f/0_boot.png "Screen Shown on Boot")*Screen Shown on Boot*
 
-![Pressed <enter> to select "English"](https://gitlab.com/pop_os-dev/pop_os-vagrantbox/uploads/d5bd3d5ac65c6c6c87003c161e4c1dd5/1_pressed-enter.png "Pressed <enter> to select \"English\"")*(boot_command: `<enter>`) Pressed `Enter` to select "English"*
+![Pressed <enter> to select "English"](https://gitlab.com/pop_os-dev/pop_os-vagrantbox/uploads/aa854a58a9bfb6eda03513aa5016ea04/1_pressed-enter.png "Pressed <enter> to select \"English\"")*(boot_command: `<enter>`) Pressed `Enter` to select "English"*
 
-![Pressed F6 and a dialog box and Boot Options Path appear](https://gitlab.com/pop_os-dev/pop_os-vagrantbox/uploads/ab7e03b67f8d9dd90e0fd825d4819262/2_pressed-f6.png "Pressed F6 and a dialog box and Boot Options Path appear")*(boot_command: `<f6>`) Pressed `F6` and a dialog box and Boot Options Path appear*
+![Pressed F6 and a dialog box and Boot Options Path appear](https://gitlab.com/pop_os-dev/pop_os-vagrantbox/uploads/8bdde3888647e3c8eb1e5af8e4e41f5a/2_pressed-f6.png "Pressed F6 and a dialog box and Boot Options Path appear")*(boot_command: `<f6>`) Pressed `F6` and a dialog box and Boot Options Path appear*
 
-![Pressed esc and dialog box is closed leaving a cursor on the Boot Options path](https://gitlab.com/pop_os-dev/pop_os-vagrantbox/uploads/7c3d206e5fd26e8effc6bb0856237335/3_pressed-esc.png "Pressed esc and dialog box is closed leaving a cursor on the Boot Options path")*(boot_command:  `<esc>`) Pressed `esc` and dialog box is closed leaving a cursor on the Boot Options path*
+![Pressed esc and dialog box is closed leaving a cursor on the Boot Options path](https://gitlab.com/pop_os-dev/pop_os-vagrantbox/uploads/552997baf90222907a3b9af277b6012c/3_pressed-esc.png "Pressed esc and dialog box is closed leaving a cursor on the Boot Options path")*(boot_command:  `<esc>`) Pressed `esc` and dialog box is closed leaving a cursor on the Boot Options path*
 
-![video session](https://gitlab.com/pop_os-dev/pop_os-vagrantbox/uploads/b763eb8360a365d67f4a62528b6ad7c3/4_pressed-bs-85-times.webm)
+![video session](https://gitlab.com/pop_os-dev/pop_os-vagrantbox/uploads/865b34429b00ba2d71c3b05cc757d309/4_pressed-bs-85-times.webm)
 <p class=note><em>(boot_command: <code>&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;&lt;bs&gt;</code>) Pressed <code>backspace</code> 85 times. Cursor remains on a now blank boot options line</p>
 
 
