@@ -1,0 +1,18 @@
+{
+    "name": "ethan/pop-os_2204_amd64_intel_20",
+    "short_description": "ethan's base pop-os22.04 box",
+    "description": "ethan's base Pop!_OS 22.04 LTS box created from official iso using virtualbox. defaults to 4GB mem.",
+    "versions": [
+      {
+        "version": "0.0.1",
+        "providers": [
+          {
+            "name": "virtualbox",
+            "url": "file:////home/ethan/vagrant_boxes/pop-os_22.04_amd64_intel_20.box",
+            "checksum": "dba1e039700db70c2f6e4f8b42a5e2001216febd36816d34073e088479c39fbd",
+            "checksum_type": "sha256"
+          }
+        ]
+      }
+    ]
+}
