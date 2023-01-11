@@ -1,6 +1,34 @@
 # Summary
 This repo is to track research into vagrant boxes for [`Pop!_OS`](https://pop.system76.com/) for integration testing. Currently, this `REAMDE.md` is made of up loose notes regarding the process, roadblocks, and opportunities for improvement.
 
+Ideally, we would utilize [`packer`](https://www.packer.io/) to build a pipeline that ingests `Pop!_OS` iso image files published by [System76](https://pop.system76.com/) and returns `Pop!_OS` vagrantboxes .
+
+Unfortunately there are some roadblocks. The following is a non-exhuastive list of what stands between us and a vagrantbox pipeline.
+
+## Known Knowns:
+- We can trick vagrant into supporting Pop without a plugin for Pop. 
+- We can create a vagrant box
+  for Pop that can be interacted with via virtualbox GUI or `vagrant ssh` cli.
+
+## Known Unknowns:
+- Packer
+  - Can `packer` perform an unattended install of `Pop!_OS`?
+    - It can perform an unattended install of `debian` and `ubuntu`. `Pop!_OS` is downstream of `ubuntu`. However, `Pop!_OS` uses a flavor of the `ElementaryOS` installer (perhaps only the frontend of the elementary installer)
+      - `ElementaryOS` does [not seem to support unattended installs](https://github.com/elementary/installer/issues/503) with [preseed files](https://wiki.debian.org/DebianInstaller/Preseed) the way Ubuntu does. However `debconf` seems to be a backend that may bypass the GTK installer
+      - `Pop!_OS` uses a rust backend called [`distinst`](https://github.com/pop-os/distinst). If I understand correctly, we may be able to [target this backend with parameters that emulate selections from a UI](https://github.com/pop-os/distinst/blob/d343ec3444097afb76ebf9339a1cc736cafab1b2/tests/install.sh#L28). Gut says it would be a long shot to trick `packer` into this even if we got it working manually.
+        - What do the options reference?
+        - What params does the [elementary installer](https://github.com/elementary/installer) pass and where are they stored for the backend to read?
+        - distinst used to have a config script 
+      - Does `Pop!_OS` retain 
+      https://github.com/pop-os/distinst/pull/132
+  - Does `packer` generate an [`OVF`](https://en.wikipedia.org/wiki/Open_Virtualization_Format) file when given an iso?
+  - Does the `vagrant` post-processor for `packer` call `vagrant` directly on an instantiated OVF?
+    - If so, working through the `vagrant` blockers may be necessary if we get that far.
+- Vagrant
+  - No supported [plugin for `Pop!_OS`](https://github.com/hashicorp/vagrant/tree/main/plugins/guests)
+    - For the moment we can get around this by tricky Vagrant into thinking Pop is Ubuntu
+
+
 # How to Make a Vagrant Base Box from an ISO (the tedious, unscalable way)
 Creating a `Pop!_OS` vagrantbox from an iso does not work with Packer. We need to use Virtualbox. 
 These steps are based on the [general steps for creating a base box](https://www.vagrantup.com/docs/boxes/base) and the [instructions for making one with Virtualbox](https://www.vagrantup.com/docs/providers/virtualbox/boxes)
@@ -149,7 +177,6 @@ sudo umount /media/VBoxGuestAdditions
 sudo rmdir /media/VBoxGuestAdditions
 ```
 	
-	
 9. spoof to Ubuntu
 
    i. in `/etc/os-release` change `ID` from `ID=pop` to `ID=ubuntu`
@@ -249,7 +276,7 @@ https://about.gitlab.com/handbook/markdown-guide/#display-local-videos-html5
 
 # How to Make a Vagrant Base Box from an ISO (the easy way)
 
-use Packer and preseed files.
+use Packer and preseed files?
 
 ## Setup Packer
 
@@ -362,9 +389,9 @@ plugin dir located in `vagrant/plugins/guests/pop/`
 
 contains `guest.rb` and `plugin.rb`
 
-`guest.rb` like <code block/> where `GUEST_DETECTION_NAME` = "Pop"` or `pop`?
+`guest.rb` like <code block\> where `GUEST_DETECTION_NAME` = `"Pop"` or `pop`?
 
-```
+```ruby
 require_relative '../linux/guest'
 
 module VagrantPlugins
@@ -399,7 +426,9 @@ The above installation method includes Bundler ( usage: `bundle -h` ) and RubyGe
 
 	
 # Appendix 3 (Spoofing `/etc/os-release`)
+
 ## Abridged
+
 1. In `Pop!_OS` VirtualBox VM
 
 Changed `/etc/os-release` values
