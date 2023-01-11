@@ -17,9 +17,9 @@ Unfortunately there are some roadblocks. The following is a non-exhuastive list 
       - `ElementaryOS` does [not seem to support unattended installs](https://github.com/elementary/installer/issues/503) with [preseed files](https://wiki.debian.org/DebianInstaller/Preseed) the way Ubuntu does. However `debconf` seems to be a backend that may bypass the GTK installer
       - `Pop!_OS` uses a rust backend called [`distinst`](https://github.com/pop-os/distinst). If I understand correctly, we may be able to [target this backend with parameters that emulate selections from a UI](https://github.com/pop-os/distinst/blob/d343ec3444097afb76ebf9339a1cc736cafab1b2/tests/install.sh#L28). Gut says it would be a long shot to trick `packer` into this even if we got it working manually.
         - What do the options reference?
-        - What params does the [elementary installer](https://github.com/elementary/installer) pass and where are they stored for the backend to read?
+        - What params does the [installer](https://github.com/pop-os/installer) pass and where are they stored for the backend to read?
         - distinst used to have a config script 
-      - Does `Pop!_OS` retain 
+      - Does `Pop!_OS` retain any of the debian lineage that may allow us to use preseed files?
       https://github.com/pop-os/distinst/pull/132
   - Does `packer` generate an [`OVF`](https://en.wikipedia.org/wiki/Open_Virtualization_Format) file when given an iso?
   - Does the `vagrant` post-processor for `packer` call `vagrant` directly on an instantiated OVF?
