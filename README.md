@@ -13,14 +13,15 @@ Unfortunately there are some roadblocks. The following is a non-exhuastive list 
 ## Known Unknowns:
 - Packer
   - Can `packer` perform an unattended install of `Pop!_OS`?
-    - It can perform an unattended install of `debian` and `ubuntu`. `Pop!_OS` is downstream of `ubuntu`. However, `Pop!_OS` uses a flavor of the `ElementaryOS` installer (perhaps only the frontend of the elementary installer)
+    - It can perform an unattended install of `debian` and `ubuntu`. `Pop!_OS` is downstream of `ubuntu`. However, `Pop!_OS` uses [a flavor of the `ElementaryOS` installer](https://github.com/pop-os/installer) (perhaps only the frontend of the elementary installer)
       - `ElementaryOS` does [not seem to support unattended installs](https://github.com/elementary/installer/issues/503) with [preseed files](https://wiki.debian.org/DebianInstaller/Preseed) the way Ubuntu does. However `debconf` seems to be a backend that may bypass the GTK installer
       - `Pop!_OS` uses a rust backend called [`distinst`](https://github.com/pop-os/distinst). If I understand correctly, we may be able to [target this backend with parameters that emulate selections from a UI](https://github.com/pop-os/distinst/blob/d343ec3444097afb76ebf9339a1cc736cafab1b2/tests/install.sh#L28). Gut says it would be a long shot to trick `packer` into this even if we got it working manually.
         - What do the options reference?
-        - What params does the [installer](https://github.com/pop-os/installer) pass and where are they stored for the backend to read?
+        - What params does the installer pass and where are they stored for the backend to read?
         - distinst used to have a config script 
       - Does `Pop!_OS` retain any of the debian lineage that may allow us to use preseed files?
-      https://github.com/pop-os/distinst/pull/132
+      - Can we skip preseed files and [pass the Packer `boot_command` a kickstart file?](https://www.reddit.com/r/RockyLinux/comments/ww37hc/comment/ilk8fo3/?utm_source=share&utm_medium=web2x&context=3)
+      - https://github.com/pop-os/distinst/pull/132
   - Does `packer` generate an [`OVF`](https://en.wikipedia.org/wiki/Open_Virtualization_Format) file when given an iso?
   - Does the `vagrant` post-processor for `packer` call `vagrant` directly on an instantiated OVF?
     - If so, working through the `vagrant` blockers may be necessary if we get that far.
@@ -47,6 +48,7 @@ These steps are based on the [general steps for creating a base box](https://www
 	
    iv.  Memory Size: 4096 MB
 	- System76 Recommends 4 GB RAM, 16 GB storage, 64-bit processor
+    - this is bare minimum. We may want more to perform other tasks in the vagrantbox.
 	
    v.   Hard Disk: Create a virtual hard disk. Use dynamically allocated 80 GB vdi. 
 	
